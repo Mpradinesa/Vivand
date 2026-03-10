@@ -3,7 +3,7 @@
 Sistema de gestión de turnos y ficha clínica digital diseñado para servicios de cuidados a domicilio y pequeñas empresas de salud, adaptable a veterinarias, servicios estéticos u otros servicios que requieran agenda. Este MVP permite coordinar pacientes, cuidadores y servicios de manera eficiente, además de mensajes instantáneos de confirmación o cancelación de cita vía WhatsApp.
 
 <p align="center">
-  <img src="screenshots/Captura Dashboard Vivand.png" alt="Vivand Dashboard" width="600">
+  <img src="screenshots/Dashboard_Vivand.png" alt="Vivand Dashboard" width="600">
 </p>
 
 ## 🚀 Características principales
@@ -20,8 +20,8 @@ Sistema de gestión de turnos y ficha clínica digital diseñado para servicios 
 Para este proyecto, se priorizó la usabilidad en dispositivos móviles, permitiendo que los profesionales gestionen sus turnos desde cualquier lugar.
 
 <p align="center">
-  <img src="screenshots/vista celular.png" alt="Vista Móvil Vivand" width="250">
-  <img src="screenshots/vista celular calendario.png" alt="Calendario de Turnos" width="250">
+  <img src="screenshots/movil_calendario.png" alt="Vista Móvil Vivand" width="250">
+  <img src="screenshots/movil_dashboard.png" alt="Calendario de Turnos" width="250">
 </p>
 
 ## 💬 Integración con WhatsApp
@@ -29,7 +29,7 @@ Para este proyecto, se priorizó la usabilidad en dispositivos móviles, permiti
 El sistema utiliza la API de UltraMsg para mantener informados a los clientes y profesionales en tiempo real.
 
 <p align="center">
-  <img src="screenshots/captura wassap.png" alt="Notificación de WhatsApp" width="400">
+  <img src="screenshots/captura_wassap.png" alt="Notificación de WhatsApp" width="400">
 </p>
 
 ## 🛠️ Tecnologías utilizadas

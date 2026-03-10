@@ -1,6 +1,10 @@
 # Vivand - Gestión de Cuidados Integrales 🩺
 
-Sistema de gestión de turnos y ficha clínica digital diseñado para servicios de cuidados a domicilio y pequeñas empresas de salud, adaptable a veterinarias, servicios esteticos u otros servicios que requieran agenda. Este MVP permite de ejemplo, se permite coordinar pacientes, cuidadores y servicios de manera eficiente, ademas de mensajes instantaneos de confirmacion o cancelacion de cita vía WhatsApp.
+Sistema de gestión de turnos y ficha clínica digital diseñado para servicios de cuidados a domicilio y pequeñas empresas de salud, adaptable a veterinarias, servicios estéticos u otros servicios que requieran agenda. Este MVP permite coordinar pacientes, cuidadores y servicios de manera eficiente, además de mensajes instantáneos de confirmación o cancelación de cita vía WhatsApp.
+
+<p align="center">
+  <img src="screenshots/Captura Dashboard Vivand.png" alt="Vivand Dashboard" width="600">
+</p>
 
 ## 🚀 Características principales
 
@@ -10,6 +14,23 @@ Sistema de gestión de turnos y ficha clínica digital diseñado para servicios 
 * **Reportes en Excel:** Generación de Fichas Médicas por paciente y reportes de pagos para cuidadores.
 * **Arquitectura:** Backend robusto desarrollado con **Django** y base de datos **PostgreSQL**.
 * **Interfaz Moderna:** Diseño profesional enfocado en la experiencia de usuario (Mobile First).
+
+## 📱 Vista Previa (Mobile First)
+
+Para este proyecto, se priorizó la usabilidad en dispositivos móviles, permitiendo que los profesionales gestionen sus turnos desde cualquier lugar.
+
+<p align="center">
+  <img src="screenshots/vista celular.png" alt="Vista Móvil Vivand" width="250">
+  <img src="screenshots/vista celular calendario.png" alt="Calendario de Turnos" width="250">
+</p>
+
+## 💬 Integración con WhatsApp
+
+El sistema utiliza la API de UltraMsg para mantener informados a los clientes y profesionales en tiempo real.
+
+<p align="center">
+  <img src="screenshots/captura wassap.png" alt="Notificación de WhatsApp" width="400">
+</p>
 
 ## 🛠️ Tecnologías utilizadas
 
@@ -23,5 +44,5 @@ Sistema de gestión de turnos y ficha clínica digital diseñado para servicios 
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone [https://github.com/tu-usuario/vivand.git](https://github.com/tu-usuario/vivand.git)
+   git clone [https://github.com/Mpradinesa/Vivand.git](https://github.com/Mpradinesa/Vivand.git)
    cd vivand

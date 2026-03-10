@@ -1,0 +1,15 @@
+# Bases de Datos locales y temporales
+*.sqlite3
+*.db
+dump.sql
+
+# Entorno Virtual (¡Muy importante!)
+venv/
+.env
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+
+# VS Code
+.vscode/

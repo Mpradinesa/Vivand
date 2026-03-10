@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid mt-4 px-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-dark">📊 Panel de Control - Vivand</h2>
+        <span class="badge bg-light text-dark border p-2">Gestión de Salud</span>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card bg-success text-white shadow-sm border-0 position-relative overflow-hidden">
+                <div class="card-body p-4">
+                    <h6 class="text-uppercase opacity-75 small fw-bold">Ingresos Mensuales</h6>
+                    <h2 class="display-6 fw-bold">$ {{ total_ingresos }}</h2>
+                    <i class="bi bi-cash-stack position-absolute top-50 end-0 translate-middle-y me-3 opacity-25" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card bg-primary text-white shadow-sm border-0 position-relative overflow-hidden">
+                <div class="card-body p-4">
+                    <h6 class="text-uppercase opacity-75 small fw-bold">Servicios Completados</h6>
+                    <h2 class="display-6 fw-bold">{{ total_servicios }}</h2>
+                    <i class="bi bi-check-circle position-absolute top-50 end-0 translate-middle-y me-3 opacity-25" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card bg-info text-white shadow-sm border-0 position-relative overflow-hidden">
+                <div class="card-body p-4">
+                    <h6 class="text-uppercase opacity-75 small fw-bold">Próximos Turnos</h6>
+                    <h2 class="display-6 fw-bold">{{ proximos_turnos.count }}</h2>
+                    <i class="bi bi-calendar-event position-absolute top-50 end-0 translate-middle-y me-3 opacity-25" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-white py-3 fw-bold">
+                    <i class="bi bi-clock-history me-2 text-primary"></i>Próximas Atenciones
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        {% for turno in proximos_turnos %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                            <div>
+                                <small class="text-muted d-block">{{ turno.inicio|date:"d/m - H:i" }}</small>
+                                <strong class="text-dark">{{ turno.paciente.nombre }} {{ turno.paciente.apellido }}</strong>
+                            </div>
+                            <span class="badge bg-light text-dark border">{{ turno.servicio.nombre }}</span>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item text-center py-5 text-muted">
+                            <i class="bi bi-info-circle d-block mb-2" style="font-size: 1.5rem;"></i>
+                            No hay turnos pendientes
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-dark text-white py-3 fw-bold">
+                    <i class="bi bi-file-earmark-spreadsheet me-2"></i> Centro de Reportes Vivand
+                </div>
+                <div class="card-body p-4">
+                    
+                    <div class="mb-5">
+                        <h6 class="fw-bold text-primary mb-3"><i class="bi bi-filter-square me-2"></i>Informe General de Ventas</h6>
+                        <form action="{% url 'exportar_excel' %}" method="get" class="row g-3">
+                            <div class="col-md-5">
+                                <input type="date" name="fecha_inicio" class="form-control" required title="Fecha Inicio">
+                            </div>
+                            <div class="col-md-5">
+                                <input type="date" name="fecha_fin" class="form-control" required title="Fecha Fin">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary w-100" title="Descargar">
+                                    <i class="bi bi-download"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="mb-5">
+                        <h6 class="fw-bold text-success mb-3"><i class="bi bi-person-badge me-2"></i>Gestión de Pagos por Cuidador</h6>
+                        <p class="small text-muted">Genera el detalle mensual para el cálculo de honorarios de los profesionales.</p>
+                        <form action="{% url 'reporte_cuidador' %}" method="get" class="row g-3">
+                            <div class="col-md-10">
+                                <select name="mes" class="form-select">
+                                    <option value="1">Enero</option>
+                                    <option value="2">Febrero</option>
+                                    <option value="3">Marzo</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Mayo</option>
+                                    <option value="6">Junio</option>
+                                    <option value="7">Julio</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Septiembre</option>
+                                    <option value="10">Octubre</option>
+                                    <option value="11">Noviembre</option>
+                                    <option value="12">Diciembre</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-success w-100">
+                                    <i class="bi bi-file-earmark-excel"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div>
+                        <h6 class="fw-bold text-info mb-3"><i class="bi bi-heart-pulse me-2"></i>Historial Clínico por Paciente</h6>
+                        <p class="small text-muted">Descarga todas las atenciones realizadas a un paciente específico.</p>
+                        <form action="{% url 'exportar_excel' %}" method="get" class="row g-3">
+                            <div class="col-md-10">
+                                <input type="text" name="q" class="form-control" placeholder="Nombre o apellido del paciente...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-info text-white w-100">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

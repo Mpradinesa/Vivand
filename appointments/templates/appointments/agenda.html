@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid mt-3"> <div class="d-flex justify-content-between align-items-center mb-4 px-3">
+        <h2>📅 Calendario de Turnos</h2>
+        <a href="{% url 'nuevo_turno' %}" class="btn btn-success shadow-sm">
+            <i class="bi bi-plus-circle"></i> Agregar Turno
+        </a>
+    </div>
+
+    <div class="card shadow border-0 mb-4">
+        <div class="card-body p-4">
+            <div id="calendar"></div>
+        </div>
+    </div>
+</div>
+
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'timeGridWeek', // Cambiado a Vista Semanal para ver horas
+            locale: 'es',
+            firstDay: 1, // Lunes empieza la semana
+            height: '800px', // Forzamos una altura mayor
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            },
+            buttonText: {
+                today: 'Hoy',
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+                list: 'Lista'
+            },
+            // Cargamos los eventos directamente del modelo actualizado
+            events: [
+                {% for turno in turnos %}
+                {
+                    id: "{{ turno.id }}",
+                    title: "👨‍⚕️ {{ turno.cuidador.nombre|default:'S/A' }} | 👤 {{ turno.paciente.nombre }}",
+                    start: "{{ turno.inicio|date:'Y-m-d' }}T{{ turno.inicio|time:'H:i:s' }}",
+                    end: "{{ turno.fin|date:'Y-m-d' }}T{{ turno.fin|time:'H:i:s' }}",
+                    // Usamos el color que definiste en el modelo
+                    backgroundColor: "{{ turno.color_etiqueta }}",
+                    borderColor: "{{ turno.color_etiqueta }}",
+                    extendedProps: {
+                        paciente: "{{ turno.paciente.nombre }} {{ turno.paciente.apellido }}",
+                        cuidador: "{{ turno.cuidador.nombre|default:'Sin asignar' }}",
+                        estado: "{{ turno.get_estado_display }}",
+                        servicio: "{{ turno.servicio.nombre }}"
+                    }
+                },
+                {% endfor %}
+            ],
+            eventClick: function(info) {
+                // Un mensaje de alerta más completo con la nueva información
+                alert(
+                    '📌 ' + info.event.title + '\n' +
+                    '👤 Paciente: ' + info.event.extendedProps.paciente + '\n' +
+                    '👩‍⚕️ Cuidador: ' + info.event.extendedProps.cuidador + '\n' +
+                    '🛠 Servicio: ' + info.event.extendedProps.servicio + '\n' +
+                    '🚦 Estado: ' + info.event.extendedProps.estado
+                );
+            }
+        });
+        calendar.render();
+    });
+</script>
+
+<style>
+    /* Ajustes para que ocupe buen espacio y se vea limpio */
+    #calendar {
+        background: white;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    /* Estilo de los eventos */
+    .fc-event {
+        cursor: pointer;
+        transition: transform 0.2s;
+        border: none !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .fc-event:hover {
+        transform: scale(1.02);
+    }
+    /* Ajuste de fuentes para mejor lectura */
+    .fc-col-header-cell-cushion, .fc-daygrid-day-number {
+        text-decoration: none !important;
+        color: #444;
+    }
+</style>
+{% endblock %}

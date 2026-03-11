@@ -29,7 +29,7 @@ Para este proyecto, se priorizó la usabilidad en dispositivos móviles, permiti
 El sistema facilita la administración de datos mediante la exportación de información clave. Esto incluye la generación de fichas clínicas digitales para pacientes y el desglose de honorarios para los cuidadores.
 
 <p align="center">
-  <img src="screenshots/ficha.JPG" alt="Reporte Excel Paciente" width="550">
+  <img src="screenshots/Ficha.JPG" alt="Reporte Excel Paciente" width="550">
 </p>
 
 ## 💬 Integración con WhatsApp
@@ -37,7 +37,7 @@ El sistema facilita la administración de datos mediante la exportación de info
 Utilizando la API de **UltraMsg**, el sistema automatiza las comunicaciones, enviando alertas de confirmación o recordatorios directamente al teléfono del usuario.
 
 <p align="center">
-  <img src="screenshots/captura_wassap.JPG" alt="Notificación de WhatsApp" width="350">
+  <img src="screenshots/Captura_wassap.JPG" alt="Notificación de WhatsApp" width="350">
   <img src="screenshots/agenda.jpg" alt="Detalle Agenda" width="350">
 </p>
 
